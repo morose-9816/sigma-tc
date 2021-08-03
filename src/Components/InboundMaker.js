@@ -1,5 +1,3 @@
-import SimpleCard from "./Cards";
-import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -9,16 +7,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import React from 'react';
-import Icon from '@material-ui/core/Icon';
-import DeleteIcon from '@material-ui/icons/Delete';
-import SaveIcon from '@material-ui/icons/Save';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert'
 import PDFViewer from "./PDFViewer";
 import Card from '@material-ui/core/Card';
+import {Link} from 'react-router-dom';
 
-
-const InboundChecker = () => {
+const InboundMaker = () => {
     const useStyles = makeStyles((theme) => ({
         button: {
           margin: theme.spacing(1),
@@ -79,32 +74,32 @@ const InboundChecker = () => {
 
     return (
         <>
-            <h1 class="display-3">Inbound Checker
+            <h1 style = {{textAlign:"center"}} class="display-3">Inbound Maker
             </h1>
-            <h3>
-            <small class="text-muted">Trade ID : 34567AN345</small>
+            <h3 style = {{textAlign:"center"}}>
+            <small  class="text-muted">Trade ID : 34567AN345</small>
                 </h3>
             <br/>
             <div className="pdf-viewer">
             <div className='col-6'>
-                <h6 class =  "display-6">Outbound Document</h6>
+                <h6 style = {{textAlign:"center"}} class =  "display-6">Outbound Document</h6>
                 <Card raised="true" >
                 <PDFViewer/>
                 </Card>
                 
             </div>
             <div className='col-6'>
-                <h6 class = "display-6">Inbound Document</h6>
+                <h6 style = {{textAlign:"center"}} class = "display-6">Inbound Document</h6>
                 <Card raised="true">
                 <PDFViewer/>
                 </Card>
             </div>
             </div>
             
-        <div style = {{marginTop:"7%", marginBottom:"5%"}}>
+        <div style = {{marginTop:"7%", textAlign : "center", marginBottom:"5%"}}>
             
         <Button style = {{marginRight:"1%"}}variant="contained" color = "primary" onClick={handleOpenConfirmDialog}>
-            Confirm Trade
+            Send to Checker
         </Button>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
@@ -158,9 +153,12 @@ const InboundChecker = () => {
           <Button onClick={handleCloseConfirmDialog} color="secondary">
             Check Trade Again
           </Button>
+          <Link to = "/inbound/checker">
           <Button onClick={handleConfirmTradeDialog} color="primary" autoFocus>
-            Confirm Trade
+            Send to Checker
           </Button>
+          </Link>
+          
         </DialogActions>
       </Dialog>
             
@@ -171,4 +169,4 @@ const InboundChecker = () => {
 }
 
  
-export default InboundChecker;
+export default InboundMaker;

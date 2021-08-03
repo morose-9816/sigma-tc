@@ -1,11 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-export const Navbar = () => {
+export const NavbarHome = () => {
 
     let scblogo = {
-            width: "120px",
-            height: "50px",
-            left: "10px"
+            width: "100px",
+            height: "42px",
     }
 
     return (
@@ -18,7 +18,7 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarButtonsExample">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/#" style={{color: "rgb(25, 223, 25)"}}>Home</a>
+              <a className="nav-link" href="/#" style={{color: "rgb(25, 223, 25)"}}><b>Home</b></a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/#">Our Products</a>
@@ -29,9 +29,9 @@ export const Navbar = () => {
             <li className="nav-item">
                 <a className="nav-link" href="/#">Help</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/#" style={{color : "red"}}>Logout</a>
-              </li>
+              {/* <li className="nav-item">
+                <button style={{marginLeft:"10px",marginTop:"5px"}} className="btn btn-danger btn-sm" href="/#">Login</button>
+              </li> */}
           </ul>
             
         </div>
@@ -41,4 +41,4 @@ export const Navbar = () => {
     )
 }
 
-export default Navbar;
+

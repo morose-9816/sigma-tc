@@ -3,9 +3,51 @@ import { Checkbox,FormGroup,FormControlLabel, Button } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import Snackbar from '@material-ui/core/Snackbar';
 import PDFViewer from './PDFViewer';
+import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import  {useState} from 'react';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
 
 
-export default function TabBar() {
+export default function OutboundCheck() {
+
+    const[sent, setSent] = useState(false);
+    const [open, setOpen] = React.useState(false);
+    const [openDialog, setOpenDialog] = React.useState(false);
+    const [openConfirmDialog, setOpenConfirmDialog] = React.useState(false);
+    
+
+    const handleClose = () => {
+        setOpen(false);
+      };
+      const handleCloseDialog = () => {
+        setOpenDialog(false);
+      };
+      const handleClick = () => {
+        setOpen(true);
+      };
+      const handleClickOpenDialog = () => {
+        setOpenDialog(true);
+      };
+    
+      const handleOpenConfirmDialog = () => {
+        setOpenConfirmDialog(true);
+      };
+      const handleCloseConfirmDialog = () =>{
+        setOpenConfirmDialog(false);
+      };
+    
+      const handleConfirmTradeDialog = () =>{
+        setOpenConfirmDialog(false);
+        handleClick();
+    
+      };
+
+
     let tradestyle = {
         width: '100%',
         height: '550px',
@@ -68,8 +110,9 @@ export default function TabBar() {
             state.exchangeRate &&
             state.callAmount &&
             state.putAmount &&
-            state.productType){
-                
+            state.productType)
+            {
+                setSent(true); 
             }
         else{
             alert('All checkboxes are not checked so form cannot be submitted')
@@ -119,8 +162,65 @@ export default function TabBar() {
                                     
                                 </FormGroup>   
                             </FormGroup>
-                            <Button type='submit' variant="contained" color="primary" size="large" endIcon={<KeyboardArrowRightIcon />}>Send Mail</Button>
-                            <Button variant="contained" color="secondary" size="large" style={{marginLeft:'35px'}}>Reject</Button>
+                            
+                            
+                            <Button type='submit' variant="contained" onClick = {handleOpenConfirmDialog} color="primary" size="large" endIcon={<KeyboardArrowRightIcon />}>Send Mail</Button>
+                            
+                            <Dialog
+        open={openConfirmDialog}
+        onClose={handleCloseConfirmDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-send-mail">{"Are you sure you want to send this PDF as a mail ?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-confirm-trade-dialog-description">
+            You cannot reverse this action. Confirming this would mean closing the ticket.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseConfirmDialog} color="secondary">
+            Check Trade Again
+          </Button>
+          <Link to = "/inbound/maker">
+          <Button onClick={handleConfirmTradeDialog} color="primary" autoFocus>
+            Confirm Trade
+          </Button>
+          </Link>
+          
+        </DialogActions>
+      </Dialog>
+      <Dialog open={openDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Reject Trade</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Trade Rejection Details
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Feedback"
+            type="paragraph"
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleCloseDialog} color="primary">
+            Send to admin
+          </Button>
+        </DialogActions>
+      </Dialog>
+                            
+                            
+                            
+                            
+                            
+                            <Button onClick={handleClickOpenDialog} variant="contained" color="secondary" size="large" style={{marginLeft:'35px'}}>Reject</Button>
+                            
                          </form>
                 </div>
             </div>

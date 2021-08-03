@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 export const Navbar = () => {
 
@@ -29,7 +30,10 @@ export const Navbar = () => {
                 <a className="nav-link" href="/#">Help</a>
               </li>
               <li className="nav-item">
-                <button style={{marginLeft:"10px",marginTop:"5px"}} className="btn btn-danger btn-sm" href="/#">Logout</button>
+                <Link to = "/">
+                <button style={{marginLeft:"10px",marginTop:"5px"}} className="btn btn-danger btn-sm">Logout</button>
+                </Link>
+                
               </li>
           </ul>
             

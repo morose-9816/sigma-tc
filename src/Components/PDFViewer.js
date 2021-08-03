@@ -20,7 +20,7 @@ const PDFViewer = () => {
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
     return (  
-    <div className='pdf-viewer'>
+    <div className='pdf-container'>
         {/* show pdf conditionally (if we have one)  */}
         {defaualtPDFFile&&<><Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
           <Viewer fileUrl={defaualtPDFFile}

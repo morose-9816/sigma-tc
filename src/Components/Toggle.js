@@ -1,7 +1,13 @@
 import React from 'react'
 import { AuditLogs } from './AuditLogs'
 
+import { useState } from 'react';
+import ReactDOM from 'react-dom';
+import Modalll from './Modalll';
+
 export const Toggle = () => {
+  
+
     return (
         <div className="container">
         <div>
@@ -155,8 +161,10 @@ export const Toggle = () => {
         <button type="button" className="btn btn-primary btn-sm">Generate Details from XML</button>
           </div>
           <div className="col">
-          <button type="submit" className="btn btn-success btn-sm">Generate PDF</button>    
-        <button style={{marginLeft:"15px"}} type="button" className="btn btn-danger btn-sm">Reject</button>
+          <Modalll/>
+          </div>  
+          <div className="col"> 
+        <button style={{marginLeft:"50px", marginBottom:"100px"}} type="button" className="btn btn-danger btn-sm">Reject</button>
         </div>
         </div>
 
